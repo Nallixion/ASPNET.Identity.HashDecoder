@@ -10,9 +10,9 @@ using McMaster.Extensions.Hosting.CommandLine;
 
 class Program
 {
-    static Task<int> Main(string[] args)
-        => new HostBuilder()
-        .RunCommandLineApplicationAsync<Program>(args);
+    //static Task<int> Main(string[] args)
+    //    => new HostBuilder()
+    //    .RunCommandLineApplicationAsync<Program>(args);
 
     [Option]
     public int Port { get; } = 8080;
