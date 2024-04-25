@@ -18,7 +18,25 @@ public partial class App : Application
 #endif
 {
     private IHost _host;
+
+#if TOOL   
+    static Task<int> Main(string[] args)
+        => new HostBuilder()
+        .RunCommandLineApplicationAsync<Program>(args);
+
+    private IHostEnvironment _env;
+
+    public App(IHostEnvironment env){
+        _env = env;
+    }
+
+    private void OnExecute(){
+        var text = new WenceyWang.FIGlet.AsciiArt("ASP2hashcat");
+    Console.WriteLine (text);
+    }
+#else 
     public App(){
+
         var hostBuilder = new HostBuilder()
             .ConfigureAppConfiguration((context, configurationBuilder) =>
                 {
@@ -35,9 +53,13 @@ public partial class App : Application
 
           _host = hostBuilder.Build();
     }
+#endif
+
 #if !TOOL
     private async void Application_Startup(object sender, StartupEventArgs e){
         await _host.StartAsync();
+        var hashDemoV3 = "AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==";
+        var asphash = new AspNetIdentityHashInfo(hashDemoV3);
         Console.WriteLine("Hello World");
         var mainWindow = _host.Services.GetService<MainWindow>();
         mainWindow.Show();

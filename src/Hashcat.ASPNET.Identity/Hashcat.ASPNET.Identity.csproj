@@ -1,18 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <OutputType Condition="'$(Configuration)'!='Tool'">WinExe</OutputType>
-    <OutputType Condition="'$(Configuration)'=='Tool'">WinExe</OutputType>
-    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackAsTool Condition="'$(Configuration)'=='Tool'">true</PackAsTool>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'!='Tool'">
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Tool'">
+    <OutputType>exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackAsTool>true</PackAsTool>
     <ToolCommandName>botsay</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <UseWPF Condition="'$(Configuration)'!='Tool'">true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.4" />
     <PackageReference Include="NetDevPack" Version="5.3.0" />
     <PackageReference Include="SecureIdentity" Version="1.0.2" />
     <PackageReference Include="FIGlet.Net" Version="1.1.2" />
@@ -22,7 +31,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
-  <ItemGroup  Condition="'$(Configuration)'=='Tool'">
+  <ItemGroup Condition="'$(Configuration)'=='Tool'">
     <Compile Remove="MainWindow.xaml" />
     <Compile Remove="MainWindow.xaml.cs" />
     <Compile Remove="AssemblyInfo.cs" />
