@@ -69,8 +69,8 @@ public class AspNetIdentityHashInfo
         SaltLength = int.Parse(HexSaltLength, NumberStyles.HexNumber) * 8;
         Salt = HexSalt.FromPlainHexDumpStyleToByteArray().ToBase64();
         SubKey = HexSubKey.FromPlainHexDumpStyleToByteArray().ToBase64();
-        HashcatFormat = $"sha256:{IterCount}:{Salt}:{SubKey}";
         ShaType = GetShaTypeForPrf(prf);
+        HashcatFormat =  $"{ShaType}:{IterCount}:{Salt}:{SubKey}";
     }
 
     private string GetShaTypeForPrf(int prf) {
