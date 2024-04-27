@@ -60,6 +60,8 @@ public partial class App : Application
         await _host.StartAsync();
         var hashDemoV3 = "AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==";
         var asphash = new AspNetIdentityHashInfo(hashDemoV3);
+        var hashDemoV3sha512 = "AQAAAAIAAYagAAAAENt3Q9TWOAry5jUQ3s8TpgTgUIdDnyt4ZtlHuCV2Sdg7UoA8HwcSyKXNnHGMzYdJtg==";
+        var asphashx = new AspNetIdentityHashInfo(hashDemoV3sha512);
         Console.WriteLine("Hello World");
         var mainWindow = _host.Services.GetService<MainWindow>();
         mainWindow.Show();
