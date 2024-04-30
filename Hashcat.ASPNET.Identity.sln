@@ -17,13 +17,14 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Tool|Any CPU = Tool|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Release|Any CPU.Build.0 = Release|Any CPU
-        {3C3262C3-136C-41E5-AE20-A5124933D899}.Tool|Any CPU.ActiveCfg = Tool|Any CPU
+		{3C3262C3-136C-41E5-AE20-A5124933D899}.Tool|Any CPU.ActiveCfg = Tool|Any CPU
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Tool|Any CPU.Build.0 = Tool|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution

@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Tool</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'!='Tool'">
     <OutputType>WinExe</OutputType>
