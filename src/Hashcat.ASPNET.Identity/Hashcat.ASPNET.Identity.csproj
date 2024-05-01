@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;Tool</Configurations>
@@ -15,7 +16,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Tool'">
     <OutputType>exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>botsay</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
