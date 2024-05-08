@@ -17,7 +17,6 @@ public partial class App
 public partial class App : Application
 #endif
 {
-    private IHost _host;
 
 #if TOOL   
     static Task<int> Main(string[] args)
@@ -35,6 +34,7 @@ public partial class App : Application
     Console.WriteLine (text);
     }
 #else 
+    private IHost _host;
     public App(){
 
         var hostBuilder = new HostBuilder()

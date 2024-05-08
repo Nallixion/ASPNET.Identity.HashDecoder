@@ -88,34 +88,35 @@ public class AspNetIdentityHashInfo
             default:
                 throw new ArgumentOutOfRangeException(nameof(prf));
         }
-        return algorithmName.Name;
+        
+        return algorithmName.Name ?? throw new InvalidOperationException("nullable code problems");
     }
 
-    public string ShaType { get; set; }
+    public string ShaType { get; set; } = string.Empty;
 
-    public string HashcatFormat { get; set; }
+    public string HashcatFormat { get; set; } = string.Empty;
 
-    public string SubKey { get; set; }
+    public string SubKey { get; set; } = string.Empty;
 
-    public string Salt { get; set; }
+    public string Salt { get; set; } = string.Empty;
 
     public int SaltLength { get; set; }
 
     public int IterCount { get; set; }
 
-    public string HexSubKey { get; set; }
+    public string HexSubKey { get; set; } = string.Empty;
 
-    public string HexSalt { get; set; }
+    public string HexSalt { get; set; } = string.Empty;
 
-    public string HexSaltLength { get; set; }
+    public string HexSaltLength { get; set; } = string.Empty;
 
-    public string HexIterCount { get; set; }
+    public string HexIterCount { get; set; } = string.Empty;
 
-    public string HexPrf { get; set; }
+    public string HexPrf { get; set; } = string.Empty;
 
     public AspNetIdentityHashVersion HashVersion { get; set; }
-    public string HexHash { get; set; }
-    public string Hash { get; set; }
+    public string HexHash { get; set; } = string.Empty;
+    public string Hash { get; set; } = string.Empty;
 }
 
 public enum AspNetIdentityHashVersion{
