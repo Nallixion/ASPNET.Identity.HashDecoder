@@ -7,82 +7,60 @@ using AspNetIdentityHashInfo = Hashcat.ASPNET.Identity.AspNetIdentityHashInfo;
 using McMaster.Extensions.CommandLineUtils;
 using McMaster.Extensions.Hosting.CommandLine;
 
+[Command(Name = "di", Description = "Dependency Injection sample project")]
+class Program {
+    static Task<int> Main(string[] args)
+        => new HostBuilder()
+        .RunCommandLineApplicationAsync<Program>(args);
 
-class Program
-{
-    //static Task<int> Main(string[] args)
-    //    => new HostBuilder()
-    //    .RunCommandLineApplicationAsync<Program>(args);
-
-    [Option]
+    [Option("-P|--PORT", Description = "your desired PORT")]
     public int Port { get; } = 8080;
 
     private IHostEnvironment _env;
 
-    public Program(IHostEnvironment env)
-    {
+    public Program(IHostEnvironment env) {
         _env = env;
     }
 
-    private void OnExecute()
-    {
+    private void OnExecute() {
         var text = new WenceyWang.FIGlet.AsciiArt("ASP2hashcat");
-    Console.WriteLine (text);
+        Console.WriteLine(text);
 
-    var hashDemoV3 = "AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==";
-    var hashDemoV2 = "AKfi6N5zPeZPjSBozm7Bt8YzqM/WpgoAU40cbMTIb2y5v/9DzxjxSOwgNQLNEiYadg==";
-    var hashDemoBase64Decoded = hashDemoV3.FromBase64();
-    var hex = BitConverter.ToString(hashDemoBase64Decoded).Replace("-", "").ToLower();
+        var hashDemoV3 = "AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==";
+        ProcessHash(hashDemoV3);
 
-    Console.WriteLine($"Demo Hash: {hex}");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+    }
 
-    string HexHash = hashDemoV3.FromBase64().ToPlainHexDumpStyle();
-    string Hash = hashDemoV3;
-    var hashVersion = HexHash.Substring(0, 2);
-    Console.Write(hashVersion);
+    private static void ProcessHash(string hashDemoV3) {
+        var hashDemoBase64Decoded = hashDemoV3.FromBase64();
+        var hex = BitConverter.ToString(hashDemoBase64Decoded).Replace("-", "").ToLower();
 
-    var asphash = new AspNetIdentityHashInfo(hashDemoV3);
-    Console.ResetColor();
-    Console.ForegroundColor = ConsoleColor.DarkGreen;
-    Console.Write(asphash.ShaType);
-    Console.ResetColor();
-    Console.Write(":");
-    Console.ForegroundColor = ConsoleColor.DarkCyan;
-    Console.Write(asphash.IterCount);
-    Console.ResetColor();
-    Console.Write(":");
-    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-    Console.Write(asphash.Salt);
-    Console.ResetColor();
-    Console.Write(":");
-    Console.ForegroundColor = ConsoleColor.DarkBlue;
-    Console.WriteLine(asphash.SubKey);
-    Console.ResetColor();
+        Console.WriteLine($"Demo Hash: {hex}");
 
-    var hashDemoBase64Decodedv2 = hashDemoV2.FromBase64();
-    var hexv2 = BitConverter.ToString(hashDemoBase64Decodedv2).Replace("-", "").ToLower();
+        var asphash = new AspNetIdentityHashInfo(hashDemoV3);
+        Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.Write(asphash.ShaType);
+        Console.ResetColor();
+        Console.Write(":");
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.Write(asphash.IterCount);
+        Console.ResetColor();
+        Console.Write(":");
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        Console.Write(asphash.Salt);
+        Console.ResetColor();
+        Console.Write(":");
+        Console.ForegroundColor = ConsoleColor.DarkBlue;
+        Console.WriteLine(asphash.SubKey);
+        Console.ResetColor();
 
-    Console.WriteLine($"Demo Hash: {hexv2}");
-    var asphashv2 = new AspNetIdentityHashInfo(hashDemoV2);
-    Console.ResetColor();
-    Console.ForegroundColor = ConsoleColor.DarkGreen;
-    Console.Write(asphashv2.ShaType);
-    Console.ResetColor();
-    Console.Write(":");
-    Console.ForegroundColor = ConsoleColor.DarkCyan;
-    Console.Write(asphashv2.IterCount);
-    Console.ResetColor();
-    Console.Write(":");
-    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-    Console.Write(asphashv2.Salt);
-    Console.ResetColor();
-    Console.Write(":");
-    Console.ForegroundColor = ConsoleColor.DarkBlue;
-    Console.WriteLine(asphashv2.SubKey);
-    Console.ResetColor();
+        //hashDemoV3
+        //sha256:10000:bvHHyyaHNxgVoCE9JGPWuA==:MXwKKigb+FjP+EfmdErxcbcbjJH4AUtvKdTEM71dDnk=
 
-    //hashDemoV3 sha256:10000:bvHHyyaHNxgVoCE9JGPWuA==:MXwKKigb+FjP+EfmdErxcbcbjJH4AUtvKdTEM71dDnk=
-
-    //hashDemo 
+        //hashDemoV2
+        //sha1: 1000:p + Lo3nM95k + NIGjObsG3xjM =:M6jP1qYKAFONHGzEyG9sub//Q88Y8UjsIDUCzRImGnY=
     }
 }

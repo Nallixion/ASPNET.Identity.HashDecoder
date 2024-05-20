@@ -1,24 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;Tool</Configurations>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'!='Tool'">
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-    <SelfContained>true</SelfContained>
-    <PublishSingleFile>true</PublishSingleFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Tool'">
     <OutputType>exe</OutputType>
-    <TargetFrameworks>net8.0</TargetFrameworks>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>botsay</ToolCommandName>
+    <ToolCommandName>IdentityHashDecode</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
@@ -34,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Tool'">
-    <Compile Remove="MainWindow.xaml" />
     <Compile Remove="MainWindow.xaml.cs" />
     <Compile Remove="AssemblyInfo.cs" />
   </ItemGroup>
