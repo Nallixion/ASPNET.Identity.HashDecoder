@@ -8,12 +8,15 @@ using NetDevPack.Utilities;
 using AspNetIdentityHashInfo = ASPNET.Identity.HashDecoder.AspNetIdentityHashInfo;
 using McMaster.Extensions.CommandLineUtils;
 using McMaster.Extensions.Hosting.CommandLine;
+using ASPNET.Identity.HashDecoder.Components;
 
 [Command(Name = "di", Description = "Dependency Injection sample project")]
 class Program {
-    static Task<int> Main(string[] args)
-        => new HostBuilder()
-        .RunCommandLineApplicationAsync<Program>(args);
+    static Task<int> Main(string[] args) {
+        var builder = new HostBuilder();
+       
+       return builder.RunCommandLineApplicationAsync<Program>(args);
+    }
 
     [Option("-P|--PORT", Description = "your desired PORT")]
     public int Port { get; } = 8080;
@@ -33,13 +36,14 @@ class Program {
         var builder = WebApplication.CreateBuilder();
 
         // Add services to the container.
-        builder.Services.AddRazorPages();
-        builder.Services.AddServerSideBlazor();
+        builder.Services.AddRazorComponents()
+            .AddInteractiveServerComponents();
 
         var app = builder.Build();
+
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment()) {
-            app.UseExceptionHandler("/Error");
+            app.UseExceptionHandler("/Error", createScopeForErrors: true);
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
@@ -47,11 +51,10 @@ class Program {
         app.UseHttpsRedirection();
 
         app.UseStaticFiles();
+        app.UseAntiforgery();
 
-        app.UseRouting();
-
-        app.MapBlazorHub();
-        app.MapFallbackToPage("/_Host");
+        app.MapRazorComponents<App>()
+            .AddInteractiveServerRenderMode();
 
         app.Run();
         Console.WriteLine("Press any key to exit");

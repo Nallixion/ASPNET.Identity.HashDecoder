@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "src\BlazorApp1\BlazorApp1.csproj", "{6EA3D620-8086-4411-9E65-97E6FFEDBF14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp2", "BlazorApp2\BlazorApp2.csproj", "{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,11 +30,27 @@ Global
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Tool|Any CPU.ActiveCfg = Tool|Any CPU
 		{3C3262C3-136C-41E5-AE20-A5124933D899}.Tool|Any CPU.Build.0 = Tool|Any CPU
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14}.Tool|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14}.Tool|Any CPU.Build.0 = Debug|Any CPU
+		{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}.Tool|Any CPU.ActiveCfg = Debug|Any CPU
+		{2589DB3D-B84E-48C5-B6BF-6E9D07F85440}.Tool|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3C3262C3-136C-41E5-AE20-A5124933D899} = {0AC7C831-4922-4431-8CFB-31E0D886878A}
+		{6EA3D620-8086-4411-9E65-97E6FFEDBF14} = {0AC7C831-4922-4431-8CFB-31E0D886878A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2803BC3C-286D-4EC4-ACAE-34322A1D9F8D}
 	EndGlobalSection
 EndGlobal
