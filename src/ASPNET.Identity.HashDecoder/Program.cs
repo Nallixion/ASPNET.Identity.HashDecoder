@@ -1,9 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
-using Hashcat.ASPNET.Identity;
+using ASPNET.Identity.HashDecoder;
 using NetDevPack.Utilities;
-using AspNetIdentityHashInfo = Hashcat.ASPNET.Identity.AspNetIdentityHashInfo;
+using AspNetIdentityHashInfo = ASPNET.Identity.HashDecoder.AspNetIdentityHashInfo;
 using McMaster.Extensions.CommandLineUtils;
 using McMaster.Extensions.Hosting.CommandLine;
 
@@ -28,7 +30,30 @@ class Program {
 
         var hashDemoV3 = "AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==";
         ProcessHash(hashDemoV3);
+        var builder = WebApplication.CreateBuilder();
 
+        // Add services to the container.
+        builder.Services.AddRazorPages();
+        builder.Services.AddServerSideBlazor();
+
+        var app = builder.Build();
+        // Configure the HTTP request pipeline.
+        if (!app.Environment.IsDevelopment()) {
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
+
+        app.Run();
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
     }

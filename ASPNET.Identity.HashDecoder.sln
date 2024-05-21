@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0AC7C831-4922-4431-8CFB-31E0D886878A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hashcat.ASPNET.Identity", "src\Hashcat.ASPNET.Identity\Hashcat.ASPNET.Identity.csproj", "{3C3262C3-136C-41E5-AE20-A5124933D899}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNET.Identity.HashDecoder", "src\ASPNET.Identity.HashDecoder\ASPNET.Identity.HashDecoder.csproj", "{3C3262C3-136C-41E5-AE20-A5124933D899}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95F0A4E9-7E1E-4E3C-A3D4-F2D373BC4F6E}"
 	ProjectSection(SolutionItems) = preProject
