@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "ASPNET.Identity.HashDecoder": {
+    "Nallixion.ASPNET.Identity.HashDecoder": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

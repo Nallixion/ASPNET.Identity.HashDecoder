@@ -3,12 +3,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-using ASPNET.Identity.HashDecoder;
+using Nallixion.ASPNET.Identity.HashDecoder;
 using NetDevPack.Utilities;
-using AspNetIdentityHashInfo = ASPNET.Identity.HashDecoder.AspNetIdentityHashInfo;
+using AspNetIdentityHashInfo = Nallixion.ASPNET.Identity.HashDecoder.AspNetIdentityHashInfo;
 using McMaster.Extensions.CommandLineUtils;
 using McMaster.Extensions.Hosting.CommandLine;
-using ASPNET.Identity.HashDecoder.Components;
+using Nallixion.ASPNET.Identity.HashDecoder.Components;
 
 [Command(Name = "di", Description = "Dependency Injection sample project")]
 class Program {

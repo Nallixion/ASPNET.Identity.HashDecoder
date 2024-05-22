@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 using NetDevPack.Utilities;
 
-namespace ASPNET.Identity.HashDecoder;
+namespace Nallixion.ASPNET.Identity.HashDecoder;
 
 public class AspNetIdentityHashInfo
 {
