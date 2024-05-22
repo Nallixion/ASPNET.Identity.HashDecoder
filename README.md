@@ -1,4 +1,4 @@
-# Hashcat.ASPNET.Identity
+# Nallixion.ASPNET.Identity.HashDecoder
 Convert aspnet Identity Hashes to HashCat format
 
 ## References
