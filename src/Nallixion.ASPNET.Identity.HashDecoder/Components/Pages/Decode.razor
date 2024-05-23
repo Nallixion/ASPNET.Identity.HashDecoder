@@ -1,0 +1,47 @@
+﻿@page "/decode"
+@rendermode InteractiveServer
+@inject ILogger<Decode> Logger
+
+<PageTitle>Decode</PageTitle>
+
+<h1>Decode</h1>
+
+<form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+    <AntiforgeryToken />
+    <div>
+        <label>
+            Identifier:
+            <InputText @bind-Value="Model!.Id" />
+        </label>
+    </div>
+    <div>
+        @if (submitted)
+        {
+            <p>Hello @Model.result from the library's form!</p>
+        }
+     </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+@code {
+    [SupplyParameterFromForm]
+    public IdentityHash? Model { get; set; }
+    bool submitted = false;
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        Logger.LogInformation("Id = {Id}", Model?.Id);
+        Model.result = Model?.Id;
+        submitted = true;
+    }
+
+    public class IdentityHash
+    {
+        public string? Id { get; set; }
+        public string? result { get; set; }
+    }
+}
