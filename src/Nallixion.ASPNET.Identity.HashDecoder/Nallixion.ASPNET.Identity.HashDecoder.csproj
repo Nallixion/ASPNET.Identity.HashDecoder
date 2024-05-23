@@ -5,9 +5,13 @@
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;Tool</Configurations>
     <OutputType>exe</OutputType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>IdentityHashDecode</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageVersion>0.0.1-alpha.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,5 +23,9 @@
     <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" Version="4.1.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>
