@@ -2,22 +2,27 @@
 @rendermode InteractiveServer
 @inject ILogger<Decode> Logger
 
+@using Nallixion.ASPNET.Identity.HashDecoder.Components.ViewModels
+
 <PageTitle>Decode</PageTitle>
 
 <h1>Decode</h1>
-
+<div class="callout">
+    Sample asp.net v3 hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==
+</div>
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
     <AntiforgeryToken />
     <div>
         <label>
             Identifier:
-            <InputText @bind-Value="Model!.Id" />
+            <InputText @bind-Value="Model!.PasswordHash" />
         </label>
     </div>
     <div>
         @if (submitted)
         {
-            <p>Hello @Model.result from the library's form!</p>
+            <p>Hello @Model.ShaType from the library's form!</p>
+            <p>@Model.HashcatFormat</p>
         }
      </div>
     <div>
@@ -27,21 +32,18 @@
 
 @code {
     [SupplyParameterFromForm]
-    public IdentityHash? Model { get; set; }
+    public HashInfo? Model { get; set; }
     bool submitted = false;
 
     protected override void OnInitialized() => Model ??= new();
 
     private void Submit()
     {
-        Logger.LogInformation("Id = {Id}", Model?.Id);
-        Model.result = Model?.Id;
+        Logger.LogInformation("ShaType = {ShaTpe}", Model?.ShaType);
+        HashInfo hashInfo = new HashInfo();
+        var asphash = new AspNetIdentityHashInfo(Model!.PasswordHash);
+        Model.HashcatFormat = asphash.HashcatFormat;
+        Model.ShaType = Model?.ShaType;
         submitted = true;
-    }
-
-    public class IdentityHash
-    {
-        public string? Id { get; set; }
-        public string? result { get; set; }
     }
 }
