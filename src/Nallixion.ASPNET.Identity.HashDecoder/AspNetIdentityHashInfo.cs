@@ -29,21 +29,25 @@ public class AspNetIdentityHashInfo
 
      */
     public AspNetIdentityHashInfo(string base64Hash){
-        HexHash = base64Hash.FromBase64().ToPlainHexDumpStyle();
-        Hash = base64Hash;
-        var hashVersion = HexHash.Substring(0, 2);
-        switch (hashVersion)
-        {
-            case "01":
-                HashVersion = AspNetIdentityHashVersion.PBKDF2_HMAC_SHA256;
-                GetV3Info();
-                break;
-            case "00":
-                HashVersion = AspNetIdentityHashVersion.PBKDF2_HMAC_SHA1;
-                GetV2Info();
-                break;
-            default:
-                throw new Exception("Invalid hash version");
+        try {
+            HexHash = base64Hash.FromBase64().ToPlainHexDumpStyle();
+            Hash = base64Hash;
+            var hashVersion = HexHash.Substring(0, 2);
+            switch (hashVersion) {
+                case "01":
+                    HashVersion = AspNetIdentityHashVersion.PBKDF2_HMAC_SHA256;
+                    GetV3Info();
+                    break;
+                case "00":
+                    HashVersion = AspNetIdentityHashVersion.PBKDF2_HMAC_SHA1;
+                    GetV2Info();
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception ex) { 
+        
         }
     }
 
@@ -56,6 +60,7 @@ public class AspNetIdentityHashInfo
         IterCount = 1000;
         ShaType = "sha1";
         HashcatFormat = $"sha1:{IterCount}:{Salt}:{SubKey}";
+        isValidHash = true;
     }
 
     private void GetV3Info(){
@@ -71,6 +76,7 @@ public class AspNetIdentityHashInfo
         SubKey = HexSubKey.FromPlainHexDumpStyleToByteArray().ToBase64();
         ShaType = GetShaTypeForPrf(prf);
         HashcatFormat =  $"{ShaType}:{IterCount}:{Salt}:{SubKey}";
+        isValidHash = true;
     }
 
     private string GetShaTypeForPrf(int prf) {
@@ -91,7 +97,7 @@ public class AspNetIdentityHashInfo
         
         return algorithmName.Name ?? throw new InvalidOperationException("nullable code problems");
     }
-
+    public bool isValidHash { get; set; }
     public string ShaType { get; set; } = string.Empty;
 
     public string HashcatFormat { get; set; } = string.Empty;

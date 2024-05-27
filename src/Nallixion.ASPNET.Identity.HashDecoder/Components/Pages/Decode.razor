@@ -15,19 +15,36 @@
     <div>
         <label>
             Identifier:
-            <InputText @bind-Value="Model!.PasswordHash" />
+            <InputText @bind-Value="Model!.PasswordHash" class="wideinput" />
         </label>
+    </div>    
+    <div>
+        <button type="submit">Submit</button>
     </div>
     <div>
         @if (submitted)
         {
-            <p>Hello @Model.ShaType from the library's form!</p>
-            <p>@Model.HashcatFormat</p>
+            @if (@Model!.isValidHash)
+            {
+                <p>Hello @Model.ShaType from the library's form!</p>
+                <div class="row">
+                    <div class="col-md-2">
+                    <label>
+                        Hashcat Format:
+                    </label>
+                    </div>
+                    <div class="col-md-10">
+                        <InputText @bind-Value="Model!.HashcatFormat" disabled="disabled" class="wideinput" />
+                    </div>
+                </div>
+            }
+        else
+            {
+                <p>Not a valid hash</p>
+            }
         }
-     </div>
-    <div>
-        <button type="submit">Submit</button>
     </div>
+
 </form>
 
 @code {
@@ -42,8 +59,12 @@
         Logger.LogInformation("ShaType = {ShaTpe}", Model?.ShaType);
         HashInfo hashInfo = new HashInfo();
         var asphash = new AspNetIdentityHashInfo(Model!.PasswordHash);
-        Model.HashcatFormat = asphash.HashcatFormat;
-        Model.ShaType = Model?.ShaType;
         submitted = true;
+        Model.isValidHash = asphash.isValidHash;
+        if (asphash.isValidHash)
+        {
+            Model.HashcatFormat = asphash.HashcatFormat;
+            Model.ShaType = asphash.ShaType;
+        }
     }
 }

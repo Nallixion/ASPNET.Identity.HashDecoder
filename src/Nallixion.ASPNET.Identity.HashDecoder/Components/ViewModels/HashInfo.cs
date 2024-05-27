@@ -1,5 +1,6 @@
 ﻿namespace Nallixion.ASPNET.Identity.HashDecoder.Components.ViewModels {
     public class HashInfo {
+        public bool isValidHash { get; set; }
         public string PasswordHash { get; set; } = string.Empty;
         public string ShaType { get; set; } = string.Empty;
 
