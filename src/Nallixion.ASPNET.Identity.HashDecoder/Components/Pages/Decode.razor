@@ -7,19 +7,26 @@
 <PageTitle>Decode</PageTitle>
 
 <h1>Decode</h1>
-<div class="callout">
-    Sample asp.net v3 hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==
-</div>
+
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
     <AntiforgeryToken />
-    <div>
-        <label>
-            Identifier:
-            <InputText @bind-Value="Model!.PasswordHash" class="wideinput" />
-        </label>
-    </div>    
-    <div>
-        <button type="submit">Submit</button>
+    <div class="container">
+        <div class="callout">
+            Sample asp.net v3 hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label for="txtHash">
+                    Hash:
+                </label>
+            </div>
+            <div class="col-md-10">
+                <InputText @bind-Value="Model!.PasswordHash" class="wideinput" id="txtHashcatFormat" />
+            </div>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
     </div>
     <div>
         @if (submitted)
@@ -29,12 +36,12 @@
                 <p>Hello @Model.ShaType from the library's form!</p>
                 <div class="row">
                     <div class="col-md-2">
-                    <label>
+                        <label for="txtHashcatFormat">
                         Hashcat Format:
                     </label>
                     </div>
                     <div class="col-md-10">
-                        <InputText @bind-Value="Model!.HashcatFormat" disabled="disabled" class="wideinput" />
+                        <InputText @bind-Value="Model!.HashcatFormat" disabled="disabled" class="wideinput" id="txtHashcatFormat" />
                     </div>
                 </div>
             }
