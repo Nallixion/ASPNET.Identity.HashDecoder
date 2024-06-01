@@ -10,11 +10,12 @@
 
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
     <AntiforgeryToken />
-    <div class="container">
+    <div class="container overflow-hidden">
         <div class="callout">
-            Sample asp.net v3 hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==
+            Sample asp.net v3 256bit hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ== <br />
+            Sample asp.net v2 hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==
         </div>
-        <div class="row">
+        <div class="row gy-5">
             <div class="col-md-2">
                 <label for="txtHash">
                     Hash:
@@ -24,16 +25,46 @@
                 <InputText @bind-Value="Model!.PasswordHash" class="wideinput" id="txtHashcatFormat" />
             </div>
         </div>
-        <div>
+        <div class="row gy-10">
             <button type="submit">Submit</button>
         </div>
     </div>
-    <div>
+    <div class="container overflow-hidden">
         @if (submitted)
         {
             @if (@Model!.isValidHash)
             {
-                <p>Hello @Model.ShaType from the library's form!</p>
+                <h3>Hash Info</h3>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>
+                            Hash Version:
+                        </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Model.HashVersion
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>
+                            ShaType:
+                        </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Model.ShaType
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>
+                            Iterations:
+                        </label>
+                    </div>
+                    <div class="col-md-10">
+                        @Model.IterCount
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-2">
                         <label for="txtHashcatFormat">
@@ -72,6 +103,8 @@
         {
             Model.HashcatFormat = asphash.HashcatFormat;
             Model.ShaType = asphash.ShaType;
+            Model.HashVersion = asphash.HashVersion.ToString();
+            Model.IterCount = asphash.IterCount;
         }
     }
 }
