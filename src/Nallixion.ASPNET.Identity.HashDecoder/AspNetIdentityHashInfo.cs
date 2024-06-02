@@ -35,7 +35,6 @@ public class AspNetIdentityHashInfo
             var hashVersion = HexHash.Substring(0, 2);
             switch (hashVersion) {
                 case "01":
-                    HashVersion = AspNetIdentityHashVersion.PBKDF2_HMAC_SHA256;
                     GetV3Info();
                     break;
                 case "00":
@@ -75,6 +74,7 @@ public class AspNetIdentityHashInfo
         Salt = HexSalt.FromPlainHexDumpStyleToByteArray().ToBase64();
         SubKey = HexSubKey.FromPlainHexDumpStyleToByteArray().ToBase64();
         ShaType = GetShaTypeForPrf(prf);
+        HashVersion = (AspNetIdentityHashVersion)prf;
         HashcatFormat =  $"{ShaType}:{IterCount}:{Salt}:{SubKey}";
         isValidHash = true;
     }
