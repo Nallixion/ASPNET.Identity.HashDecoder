@@ -8,13 +8,16 @@
 
 <h1>Decode</h1>
 
-<form method="post" @onsubmit="Submit" @formname="starship-plain-form">
-    <AntiforgeryToken />
-    <div class="container overflow-hidden">
-        <div class="callout">
-            Sample asp.net v3 256bit hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ== <br />
-            Sample asp.net v2 hash: AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ==
-        </div>
+
+<AntiforgeryToken />
+<div class="container overflow-hidden">
+    <div class="alert alert-primary">
+        <strong>Sample asp.net v3 512bit hash:</strong> AQAAAAIAAYagAAAAEMFXuOpEVTD6k3hCAqA1hDGHCJrDRmCiucW0sN0wJo3JuF0IJiVyx/5TlMzClYECrA== <br />
+        <strong>Sample asp.net v3 256bit hash:</strong> AQAAAAEAACcQAAAAEG7xx8smhzcYFaAhPSRj1rgxfAoqKBv4WM/4R+Z0SvFxtxuMkfgBS28p1MQzvV0OeQ== <br />
+        <strong>Sample asp.net v2 hash:</strong> AKfi6N5zPeZPjSBozm7Bt8YzqM/WpgoAU40cbMTIb2y5v/9DzxjxSOwgNQLNEiYadg== <br />
+
+    </div>
+    <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
         <div class="row gy-5">
             <div class="col-md-2">
                 <label for="txtHash">
@@ -25,65 +28,67 @@
                 <InputText @bind-Value="Model!.PasswordHash" class="wideinput" id="txtHashcatFormat" />
             </div>
         </div>
-        <div class="row gy-10">
-            <button type="submit">Submit</button>
+        <div class="row gy-5">
+            <div class="col-md-10">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
         </div>
-    </div>
-    <div class="container overflow-hidden">
-        @if (submitted)
+    </form>
+
+    @if (submitted)
+    {
+        @if (@Model!.isValidHash)
         {
-            @if (@Model!.isValidHash)
-            {
-                <h3>Hash Info</h3>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>
-                            Hash Version:
-                        </label>
-                    </div>
-                    <div class="col-md-10">
-                        @Model.HashVersion
-                    </div>
+            <h3>Hash Info</h3>
+            <div class="row">
+                <div class="col-md-2">
+                    <label>
+                        Hash Version:
+                    </label>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>
-                            ShaType:
-                        </label>
-                    </div>
-                    <div class="col-md-10">
-                        @Model.ShaType
-                    </div>
+                <div class="col-md-10">
+                    @Model.HashVersion
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>
-                            Iterations:
-                        </label>
-                    </div>
-                    <div class="col-md-10">
-                        @Model.IterCount
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label>
+                        ShaType:
+                    </label>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="txtHashcatFormat">
+                <div class="col-md-10">
+                    @Model.ShaType
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label>
+                        Iterations:
+                    </label>
+                </div>
+                <div class="col-md-10">
+                    @Model.IterCount
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="txtHashcatFormat">
                         Hashcat Format:
                     </label>
-                    </div>
-                    <div class="col-md-10">
-                        <InputText @bind-Value="Model!.HashcatFormat" disabled="disabled" class="wideinput" id="txtHashcatFormat" />
-                    </div>
                 </div>
-            }
-        else
-            {
-                <p>Not a valid hash</p>
-            }
+                <div class="col-md-10">
+                    <InputText @bind-Value="Model!.HashcatFormat" disabled="disabled" class="wideinput" id="txtHashcatFormat" />
+                </div>
+            </div>
         }
-    </div>
-
-</form>
+        else
+        {
+            <div class="row gy-5">
+                <p>Not a valid hash</p>
+            </div>
+        }
+    }
+</div>
 
 @code {
     [SupplyParameterFromForm]

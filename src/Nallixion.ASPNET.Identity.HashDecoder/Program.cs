@@ -9,6 +9,7 @@ using AspNetIdentityHashInfo = Nallixion.ASPNET.Identity.HashDecoder.AspNetIdent
 using McMaster.Extensions.CommandLineUtils;
 using McMaster.Extensions.Hosting.CommandLine;
 using Nallixion.ASPNET.Identity.HashDecoder.Components;
+using Microsoft.AspNetCore.Identity;
 
 [Command(Name = "di", Description = "Dependency Injection sample project")]
 class Program {
@@ -66,6 +67,9 @@ class Program {
         var hex = BitConverter.ToString(hashDemoBase64Decoded).Replace("-", "").ToLower();
 
         Console.WriteLine($"Demo Hash: {hex}");
+        IdentityUser applicationUser = new IdentityUser();
+        IPasswordHasher<IdentityUser> hasher = new PasswordHasher<IdentityUser>();
+        var hash = hasher.HashPassword(applicationUser, "test");
 
         var asphash = new AspNetIdentityHashInfo(hashDemoV3);
         Console.ResetColor();
